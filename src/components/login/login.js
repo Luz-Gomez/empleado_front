@@ -51,7 +51,7 @@ export default class login extends React.Component {
             
                         <Button
                             variant="primary"
-                                onClick={ () => {
+                            onClick={ () => {
                                 this.iniciarSesion();
                             }}
                             >
