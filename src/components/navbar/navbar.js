@@ -11,9 +11,11 @@ export default class Menu extends React.Component {
     }
     render() { 
         return (
-            <Navbar fixed="top" id="navbar" bg="primary" expand="lg" variant="dark">
+            <Navbar fixed="top" id="navbar" bg="primary" variant="dark">
             <Container>
-                <Navbar.Brand href="#home">Almacen Lucesita <span id="usuario-sub-branm"></span>
+                <Navbar.Brand href="#home">
+                    Store Lucesita <span id="usuario-sub-branm">
+                    </span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -32,7 +34,7 @@ export default class Menu extends React.Component {
                     </Dropdown.Header>
                     <Dropdown.Divider />
                     <Dropdown.Item href="#/action-1">Cerrar Sesión</Dropdown.Item>
-                {/*}    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                {/*} <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                     <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>*/}
                 </DropdownButton>
                 </Navbar.Collapse>

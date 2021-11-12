@@ -24,12 +24,12 @@ export default class login extends React.Component {
         })
         .then((response) => {
             if (isNull(response.data.token)) {
-                alert('Usuario y/o contraseña inavalidos');
+                alert('Usuario y/o contrasela invalidos');
             } else {
                 cookies.set('_s', response.data.token, {
-                    path: '/',
+                    path:'/',
                     expires: calculaEspiracionSesion(),
-                });
+                })
             }
         })
         .catch((err) => {
@@ -39,30 +39,30 @@ export default class login extends React.Component {
     render() {
         return (
             <Container id="login-container">
+            <Row>
+                <Col>
                 <Row>
-                    <Col>
-                    <Row>
-                        <h2> Iniciar Sesión </h2>
-                    </Row>
-                    <Row>
+                    <h2> Iniciar Sesión </h2>
+                </Row>
+                <Row>
                     <Col
                         sm="12"
                         xs="12"
-                        md={{ span: 4, offset: 4 }}
-                        lg={{ span: 4, offset: 4 }}
-                        xl={{ span: 4, offset: 4 }}
+                        md={{ span:4, offset:4 }}
+                        lg={{ span:4, offset:4 }}
+                        xl={{ span:4, offset:4 }}
                     >
-                    <Form>
-                        <Form.Group>
+                <Form>
+                    <Form.Group>
                         <Form.Label>Usuario</Form.Label>
                         <Form.Control 
                             onChange={(e) =>
-                                this.setState({ usuario: e.target.value})
+                                this.setState({ usuario: e.target.value })
                             }
                         />
                         </Form.Group>
 
-                        <Form.Group>
+                    <Form.Group>
                         <Form.Label>Contraseña</Form.Label>
                         <Form.Control 
                             type="password" 
@@ -70,21 +70,21 @@ export default class login extends React.Component {
                                 this.setState({ pass: e.target.value })
                             }
                         />
-                        </Form.Group>
-            
-                        <Button
-                            variant="primary"
-                            onClick={ () => {
-                                this.iniciarSesion();
-                            }}
-                            >
-                            Iniciar Sesión
-                        </Button>
-                    </Form>
-                    </Col>
-                    </Row>
-                    </Col>
+                    </Form.Group>
+        
+                    <Button
+                        variant="primary"
+                        onClick={ () => {
+                            this.iniciarSesion();
+                        }}
+                        >
+                        Iniciar Sesión
+                    </Button>
+                </Form>
+                </Col>
                 </Row>
+                </Col>
+            </Row>
             </Container>
         );
     }

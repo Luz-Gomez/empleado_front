@@ -11,8 +11,6 @@ export default function AppRouter() {
         <Router>
             <Switch>
                 <Route exact path={["/", "/login"]} component={Login} />
-               {/*<Route exact path={'/home'} component={Home} />*/}
-                {/*Lo siguiente es para cuando escriben una pagina que no existe */}
                 <Route
                 path={'*'}
                 component={() => (
@@ -27,12 +25,3 @@ export default function AppRouter() {
         </Router>
     )
 }
-/* Para aprende, se puede enrutar una pagina sin crear un archivo para esta pagina
-function Home() {
-    return (
-        <div>
-            <h2 style={{ marginTop:100 }}> ESTE ES MI HOME</h2>
-        </div>
-    );
-}*/
-
