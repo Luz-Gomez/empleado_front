@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-import { APIHOST as host } from '../app.json';
+import { APIHOST as host } from '../app.json'
 import './login.css';
 import { isNull } from 'util';
 import Cookies from 'universal-cookie';
@@ -86,7 +86,6 @@ export default class login extends React.Component {
                     </Col>
                 </Row>
             </Container>
-            
         );
     }
 }
