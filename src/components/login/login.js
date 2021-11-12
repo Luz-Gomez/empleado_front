@@ -1,6 +1,13 @@
 import React from 'react';
+import axios from 'axios';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+import { APIHOST as host } from '../app.json';
 import './login.css';
+import { isNull } from 'util';
+import Cookies from 'universal-cookie';
+import { calculaEspiracionSesion } from '../helper/helper';
+
+const cookies = new Cookies();
 
 export default class login extends React.Component {
     constructor(props) {
@@ -11,7 +18,23 @@ export default class login extends React.Component {
         };
     }
     iniciarSesion(){
-        alert(`usuario: ${this.state.usuario} - password: ${this.state.pass}`)
+        axios.post(`${host}/usuarios/login`, {
+            usuario: this.state.usuario,
+            pass: this.state.pass,
+        })
+        .then((response) => {
+            if (isNull(response.data.token)) {
+                alert('Usuario y/o contraseña inavalidos');
+            } else {
+                cookies.set('_s', response.data.token, {
+                    path: '/',
+                    expires: calculaEspiracionSesion(),
+                });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     }
     render() {
         return (
