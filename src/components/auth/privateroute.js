@@ -9,30 +9,33 @@ const checkAuth = () => {
 export default class Private extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             auth: false,
         }
     }
+
     componentWillMount() {
         this.setState({
             auth: checkAuth() && !this.state.auth
         })
     }
 
-    render() { 
+    render() {
         const { component: Component, ...rest } = this.props;
-        return ( 
-            <Route 
-            {...rest} 
-            render={(props) => {
-                this.state.auth ? (
-                    <Component {...props} />
-                ) : (
-                    <Redirect to = {{ pathname: './login', state:
-                    { from:this.props.location}}}
-                    />
-                );
-            }}
+        return (
+            <Route
+                {...rest}
+                render={(props) => {
+                    this.state.auth ? (
+                        <Component {...props} />
+                    ) : (
+                        <Redirect to={{
+                            pathname: './login', state:
+                                { from: this.props.location }
+                        }}
+                        />
+                    );
+                }}
             />
         );
     }
