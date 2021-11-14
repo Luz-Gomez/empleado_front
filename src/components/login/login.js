@@ -6,6 +6,7 @@ import './login.css';
 import { isNull } from 'util';
 import Cookies from 'universal-cookie';
 import { calculaEspiracionSesion } from '../helper/helper';
+import Loading from '../loading/loading';
 
 const cookies = new Cookies();
 
@@ -13,11 +14,15 @@ export default class login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: false,
             usuario:'',
             pass:'',
         };
     }
     iniciarSesion(){
+
+        this.setState({ loading: true });
+
         axios.post(`${host}/usuarios/login`, {
             usuario: this.state.usuario,
             pass: this.state.pass,
@@ -31,14 +36,18 @@ export default class login extends React.Component {
                     expires: calculaEspiracionSesion(),
                 })
             }
+            this.setState({ loading: false });
         })
         .catch((err) => {
             console.log(err);
+            this.setState({ loading: false });
         });
     }
+
     render() {
         return (
             <Container id="login-container">
+                <Loading show={this.state.loading}/>
             <Row>
                 <Col>
                 <Row>
