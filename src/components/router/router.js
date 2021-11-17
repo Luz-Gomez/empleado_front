@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from "../login/login"
 import PrivateRoute from '../auth/privateroute';
+import EmpleadosBuscar from '../empleados/empleados.buscar';
 
 export default function AppRouter() {
     return(
@@ -9,7 +10,7 @@ export default function AppRouter() {
             <Switch>
                 <Route exact path={["/", "/login"]} component={ Login } />
                 <Route exact path={["/", "/index"]} component={ index } />
-                <PrivateRoute exact path="/home" component={ home } />
+                <PrivateRoute exact path="/empleados" component={ EmpleadosBuscar } />
                 <Route path={'*'} component={() => (
                     <h2 style={{ marginTop: 200 }}>
                         404
@@ -20,12 +21,6 @@ export default function AppRouter() {
             </Switch>
         </Router>
     );
-}
-
-function home() {
-    return (
-    <h2 style={{ marginTop: 200 }}>Bienvenidos a Home</h2>
-    )
 }
 
 function index() {
