@@ -7,6 +7,7 @@ export default class Loading extends React.Component {
         super(props);
         this.state = { 
             loading:false,
+            show: props.show,
          };
     }
 

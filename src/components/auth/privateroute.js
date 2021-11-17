@@ -6,7 +6,7 @@ const checkAuth = () => {
     return !getSession() ? false : true;
 };
 
-export default class Private extends React.Component {
+export default class PrivateRoute extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,17 +25,15 @@ export default class Private extends React.Component {
         return (
             <Route
                 {...rest}
-                render={(props) => {
+                render={(props) => 
                     this.state.auth ? (
                         <Component {...props} />
                     ) : (
-                        <Redirect to={{
-                            pathname: './login', state:
-                                { from: this.props.location }
-                        }}
+                        <Redirect 
+                          to={{pathname: './login', state: { from: this.props.location }}}
                         />
-                    );
-                }}
+                    )
+                }
             />
         );
     }

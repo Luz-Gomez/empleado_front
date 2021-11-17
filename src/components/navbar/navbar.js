@@ -13,6 +13,7 @@ export default class Menu extends React.Component {
         return (
             <Navbar fixed="top" id="navbar" bg="primary" variant="dark">
             <Container>
+                <img className="img-logo" src="https://cdn-icons.flaticon.com/png/512/4011/premium/4011642.png?token=exp=1637108017~hmac=6fa55ff4acc78ed30eea115de0e2a76a" alt="Logo" />
                 <Navbar.Brand href="#home">
                     Store Lucesita <span id="usuario-sub-branm">
                     </span>
@@ -24,7 +25,7 @@ export default class Menu extends React.Component {
                     <Nav.Link href="#link">Link</Nav.Link>*/}
                 </Nav>
                 <DropdownButton id="dropdown-basic-button" title="Usuario">
-                    <Dropdown.Header>
+                    <Dropdown.Header id="dropdown-header">
                         <Row>
                         <FontAwesomeIcon icon={faUserAstronaut} />
                         </Row>

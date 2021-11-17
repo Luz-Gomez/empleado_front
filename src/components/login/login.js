@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-import { APIHOST as host } from '../app.json'
+import { APIHOST as host } from '../../app.json';
 import './login.css';
 import { isNull } from 'util';
 import Cookies from 'universal-cookie';
-import { calculaEspiracionSesion } from '../helper/helper';
+import { calculaExtraccionSesion } from '../helper/helper';
 import Loading from '../loading/loading';
 
 const cookies = new Cookies();
@@ -29,12 +29,13 @@ export default class login extends React.Component {
         })
         .then((response) => {
             if (isNull(response.data.token)) {
-                alert('Usuario y/o contrasela invalidos');
+                alert('Usuario y/o contraseña invalidos');
             } else {
                 cookies.set('_s', response.data.token, {
                     path:'/',
-                    expires: calculaEspiracionSesion(),
+                    expires: calculaExtraccionSesion(),
                 })
+                this.props.history.push('/home');
             }
             this.setState({ loading: false });
         })
