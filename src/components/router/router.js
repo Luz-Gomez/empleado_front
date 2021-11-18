@@ -11,7 +11,7 @@ export default function AppRouter() {
                 <Route exact path={["/", "/login"]} component={ Login } />
                 <Route exact path={["/", "/index"]} component={ index } />
                 <PrivateRoute exact path="/empleados" component={ EmpleadosBuscar } />
-                <Route path={'*'} component={() => (
+                <Route path={'*'} component={() => ( 
                     <h2 style={{ marginTop: 200 }}>
                         404
                         <br />
