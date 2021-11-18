@@ -1,7 +1,7 @@
 import { isUndefined } from 'util';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import {APIHOST as host } from '../../app.json';
+import { APIHOST as host } from '../../app.json';
 
 const cookies = new Cookies();
 
@@ -13,7 +13,6 @@ export function calculaExtraccionSesion() {
 
 export function getSession() {
     return isUndefined(cookies.get('_s')) ? false : cookies.get('_s');
-
 }
 
 function renovarSesion() {
@@ -33,7 +32,7 @@ export const request = {
         return axios.get(`${host}${services}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
-            },
+            }, 
         });
     },
 };

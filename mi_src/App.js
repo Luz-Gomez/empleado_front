@@ -1,13 +1,13 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/Navbar/Navbar';
-import AppRouter from './components/Router/Router';
+import Menu from './components/navbar/navbar';
+import AppRouter from './components/router/router'
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <AppRouter />
+        <Menu />
+        <AppRouter />
     </div>
   );
 }
