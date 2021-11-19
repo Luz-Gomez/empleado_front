@@ -2,14 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "../Login/Login";
 import PrivateRoute from "../Auth/PrivateRoute";
-import EmpleadosBuscar from "../empleados/empleados.buscar";
+import Empleados from "../empleados";
 
 export default function AppRouter() {
     return (
         <Router>
             <Switch>
                 <Route exact path={ [ "/", "/login" ] } component={ Login } />
-                <PrivateRoute exact path={ [ "/empleados" ] } component={ EmpleadosBuscar } />
+                <PrivateRoute exact path={ [ "/empleados" ] } component={ Empleados } />
 
                 {/* Ruta de página no encontrada (404) */}
                 <Route path={ "*" } component={ () => (
