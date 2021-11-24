@@ -1,12 +1,12 @@
 import React from 'react';
-import { request } from '../helper/helper';
 import { Row, Col  } from 'react-bootstrap';
 import './../empleados/empleados.css';
 import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory, { PaginationProvider,
-     PaginationListStandalone,
-     SizePerPageDropdownStandalone, } from 'react-bootstrap-table2-paginator';
+import paginationFactory, { PaginationProvider, PaginationListStandalone,
+     SizePerPageDropdownStandalone } from 'react-bootstrap-table2-paginator';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+import { request } from '../helper/helper';
+import Loading from '../Loading/Loading';
 
 const { SearchBar } = Search;
 
@@ -14,7 +14,8 @@ export default class DataGrid extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            rows: []
+            Loading: false,
+            rows: [],
         }
     }
 
@@ -23,12 +24,17 @@ export default class DataGrid extends React.Component {
     }
 
     getData(){
+        this.setState({ loading: false });
         request
         .get(this.props.url)
         .then((response) => {
-            this.setState({ rows: response.data });
+            this.setState({ 
+                rows: response.data,
+                Loading: false,
+             });
         })
         .catch((err) => {
+            this.setState({ loading: false });
             console.error(err);
         })
     }
@@ -40,6 +46,8 @@ export default class DataGrid extends React.Component {
         };
 
         return ( 
+            <>
+            <Loading show={this.state.loading} />
             <ToolkitProvider
             keyField="tp"
             data={ this.state.rows }
@@ -80,6 +88,7 @@ export default class DataGrid extends React.Component {
                 )
             }
             </ToolkitProvider>
+            </>
         );
     }
 }

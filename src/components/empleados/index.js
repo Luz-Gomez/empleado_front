@@ -11,6 +11,11 @@ export default class Empleados extends React.Component {
             currentTab: 'buscar'
         };
     }
+
+    changeTab(tab){
+        this.setState({ current: tab });
+    }
+
     render() { 
         return ( 
             <Container id="empleados-container">
@@ -31,7 +36,7 @@ export default class Empleados extends React.Component {
                 { this.state.currentTab === 'buscar' ? (
                 <EmpleadosBuscar /> 
                 ) : (
-                    <EmpleadosCrear />
+                    <EmpleadosCrear changeTab={(tab) => this.changeTab(tab)} />
                 ) }
             </Row>
             </Container>
