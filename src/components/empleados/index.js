@@ -10,12 +10,23 @@ export default class Empleados extends React.Component {
         super(props);
         this.state = { 
             currentTab: 'Buscar',
+            _id: null,
         };
-        this.changeTab = this.changeTab.bind(this)
+        this.changeTab = this.changeTab.bind(this);
+        this.setIdEmpleado = this.setIdEmpleado.bind(this);
+        this.getIdEmpleado = this.getIdEmpleado.bind(this);
     }
 
     changeTab(tab){
         this.setState({ currentTab: tab });
+    }
+    
+    setIdEmpleado(id){
+        this.setState({ _id: id});
+    }
+
+    getIdEmpleado(){
+        return this.state._id;
     }
 
     render() { 

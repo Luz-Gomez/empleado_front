@@ -8,15 +8,39 @@ export default class EmpleadosEditar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            idEmpleado: this.props.getIdEmpleado(),
+            rediret: false,
+            message: {
+                text: '',
+                show: false,
+            },
             loading: false,
             empleado: {
                 nombre: '',
                 apellido_p: '',
                 apellido_m: '',
-                telefoon: '',
+                telefono: '',
+                mail: '',
                 direccion: '',
             },
         };
+    }
+    componentDidMount(){
+        this.getEmpleado();
+    }
+
+    getEmpleado() {
+        this.setState({ loading: true });
+        request
+        .get(`/empleados/${this.state.idEmpleado}`)
+        .then((response) => {
+            console.log(response);
+            this.setState({ loading: false });
+        })
+        .catch((err) => {
+            console.error(err);
+            this.setState({ loading: false });
+        });
     }
 
     setValue(index, value) {
