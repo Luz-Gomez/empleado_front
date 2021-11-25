@@ -32,9 +32,14 @@ export default class EmpleadosBuscar extends React.Component {
     constructor(props) {
         super(props);
         this.state = { };
+        this.onClickEditButton = this.onClickEditButton.bind(this);
     }
 
     componentDidMount() { }
+
+    onClickEditButton(row){
+        this.props.changeTab('Editar');
+    }
 
     render() { 
         return (
@@ -43,7 +48,11 @@ export default class EmpleadosBuscar extends React.Component {
                     <h2> Buscar Empleados </h2>
                 </Row>
                 <Row>
-                    <DataGrid url="/empleados" columns={columns} />
+                    <DataGrid url="/empleados" 
+                        columns={columns}
+                        showEditButton={true}
+                        onClickEditButton={this.onClickEditButton} 
+                    />
                 </Row>
             </Container>
           );

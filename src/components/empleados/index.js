@@ -2,18 +2,20 @@ import React from 'react';
 import { Container, Row, Nav } from 'react-bootstrap';
 import EmpleadosBuscar from './crud/buscar';
 import EmpleadosCrear from './crud/crear';
+import EmpleadosEditar from './crud/editar';
 import './empleados.css';
 
 export default class Empleados extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            currentTab: 'buscar'
+            currentTab: 'Buscar',
         };
+        this.changeTab = this.changeTab.bind(this)
     }
 
     changeTab(tab){
-        this.setState({ current: tab });
+        this.setState({ currentTab: tab });
     }
 
     render() { 
@@ -21,8 +23,8 @@ export default class Empleados extends React.Component {
             <Container id="empleados-container">
             <Row>
             <Nav fill variant="tabs" 
-                defaultActiveKey="/buscar"
-                onSelect={(evenKey) => this.setState({ currentTab: evenKey })}
+                defaultActiveKey="Buscar"
+                onSelect={(eventKey) => this.setState({ currentTab: eventKey })}
             >
                 <Nav.Item>
                      <Nav.Link eventKey="Buscar">Buscar</Nav.Link>
@@ -33,11 +35,19 @@ export default class Empleados extends React.Component {
             </Nav>
             </Row>
             <Row>
-                { this.state.currentTab === 'buscar' ? (
-                <EmpleadosBuscar /> 
+                { this.state.currentTab === 'Buscar' ? (
+                <EmpleadosBuscar 
+                    changeTab={this.changeTab}
+                    setIdEmpleado={this.setIdEmpleado}
+                /> 
+                ) : this.state.currentTab === 'Crear' ? (
+                    <EmpleadosCrear changeTab={this.changeTab} />
                 ) : (
-                    <EmpleadosCrear changeTab={(tab) => this.changeTab(tab)} />
-                ) }
+                    <EmpleadosEditar 
+                        changeTab={this.changeTab}
+                        getIdEmpleado={this.getIdEmpleado} 
+                    />
+                )}
             </Row>
             </Container>
          );
