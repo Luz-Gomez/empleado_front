@@ -45,4 +45,14 @@ export const request = {
             },
         });
     },
+
+    put: function (services, data) {
+        let token = renovarSesion();
+        return axios.put(`${host}${services}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+    },
 };
+

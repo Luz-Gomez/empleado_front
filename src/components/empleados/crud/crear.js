@@ -2,21 +2,29 @@ import React from 'react';
 import { Container, Row, Form, Button } from 'react-bootstrap';
 import { request } from '../../helper/helper';
 import Loading from '../../Loading/Loading';
+import MessagePrompt from '../../prompts/message';
 import '../empleados.css';
 
 export default class EmpleadosCrear extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            rediret: false,
+            message: {
+                text: '',
+                show: false,
+            },
             loading: false,
             empleado: {
                 nombre: '',
                 apellido_p: '',
                 apellido_m: '',
-                telefoon: '',
+                telefono: '',
+                mail: '',
                 direccion: '',
             },
         };
+        this.onExitedMessage = this.onExitedMessage.bind(this);
     }
 
     setValue(index, value) {
@@ -34,7 +42,13 @@ export default class EmpleadosCrear extends React.Component {
             .post('/empleados', this.state.empleado)
             .then((response) => {
                 if (response.data.exito) {
-                    this.props.changeTab('buscar');
+                    this.setState({
+                        rediret: response.data.exito,
+                        message: {
+                            text: response.data.msg,
+                            show: true,
+                        },
+                    });
                 }
                 this.setState({ loading: false });
             })
@@ -44,9 +58,19 @@ export default class EmpleadosCrear extends React.Component {
             });
     }
 
+    onExitedMessage() {
+        if (this.state.rediret) this.props.changeTab('Buscar')
+    }
+
     render() {
         return (
             <Container id="empleados-crear-container">
+                <MessagePrompt 
+                    text={this.state.message.text}
+                    show={this.state.message.show}
+                    duration={1500}
+                    onExited={this.onExitedMessage}
+                />
                 <Loading show={this.state.loading} />
                 <Row>
                     <h2> Crear Empleados </h2>

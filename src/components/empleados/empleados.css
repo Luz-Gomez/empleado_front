@@ -6,6 +6,12 @@
     float: left;
 }
 
+#empleados-editar-container
+{
+    float: left;
+    background: rgb(195, 187, 177);
+}
+
 #empleados-label{
     float: left;
 }
