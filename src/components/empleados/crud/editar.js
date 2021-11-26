@@ -89,7 +89,15 @@ export default class EmpleadosEditar extends React.Component {
     }
 
     onConfirm(){
-        alert('confirmar');
+        this.setState(
+        {
+            confirmation: {
+                ...this.state.confirmation,
+                show: false,
+            },
+        },
+        this.guardarEmpleados()
+        );
     }
 
     render() {
